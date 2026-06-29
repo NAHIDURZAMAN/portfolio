@@ -63,12 +63,6 @@ git push -u origin main
 
 ---
 
-## 🔐 Admin Access
-- URL: `your-site.vercel.app`
-- Click **Admin** button (top right)
-- Email: `nahidurzaman1903@gmail.com`
-- Password: `nahidurzaman_portfolio`
-
 ---
 
 ## 📸 Image Support
