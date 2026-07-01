@@ -6,7 +6,11 @@ const supabaseServiceKey = import.meta.env.VITE_SUPABASE_SERVICE_KEY
 
 // Safe client for public database operations
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
-export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey)
+// Never crash the app if service role key is missing in frontend env.
+// In production, admin writes should go through server-side APIs.
+export const supabaseAdmin = supabaseServiceKey
+  ? createClient(supabaseUrl, supabaseServiceKey)
+  : supabase
 
 // Storage bucket name
 export const BUCKET = 'portfolio-images'
