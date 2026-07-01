@@ -1,13 +1,11 @@
 import { useState } from 'react'
-import { Menu, X, Lock, LogOut, Save } from 'lucide-react'
+import { Menu, X, LogOut, Save } from 'lucide-react'
 import { useAuth } from '../lib/auth'
-import LoginModal from './LoginModal'
 
 const NAV_ITEMS = ['about','skills','projects','experience','education','clubs','certifications','gallery']
 
 export default function Navbar({ saved }) {
   const { isAdmin, logout } = useAuth()
-  const [showLogin, setShowLogin] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const scrollTo = (id) => {
@@ -41,12 +39,7 @@ export default function Navbar({ saved }) {
                 className="flex items-center gap-1.5 text-xs text-red-400 border border-red-400/30 rounded-lg px-3 py-1.5 hover:bg-red-400/10 transition">
                 <LogOut size={13}/> Exit Admin
               </button>
-            ) : (
-              <button onClick={() => setShowLogin(true)}
-                className="flex items-center gap-1.5 text-xs text-cyan-400 border border-cyan-400/30 rounded-lg px-3 py-1.5 hover:bg-cyan-400/10 transition">
-                <Lock size={13}/> Admin
-              </button>
-            )}
+            ) : null}
             <button className="md:hidden text-white/50 hover:text-white transition" onClick={() => setMobileOpen(o => !o)}>
               {mobileOpen ? <X size={20}/> : <Menu size={20}/>}
             </button>
@@ -65,7 +58,6 @@ export default function Navbar({ saved }) {
         )}
       </header>
 
-      {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
     </>
   )
 }
